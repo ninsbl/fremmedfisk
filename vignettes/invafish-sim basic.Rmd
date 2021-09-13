@@ -1,0 +1,35 @@
+---
+title: "INVAFISH-sim"
+author: "Anders G. Finstad"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Basic documentation on usage. Functions described here will usually be run sequenctially as as part of a workflow. This vignette takes you through the workflow step-by-step.  
+
+## 0. load auxiliary packages 
+```{r, eval = FALSE}
+# install and load invafish-sim
+install.packages("devtools") # install devtools if needed
+devtools::install_github("NINAnor/invafish-sim")
+
+# load packages
+library(invafish.sim)
+library(dbplyr)
+library(dplyr)
+
+```
+
+
+## 1. Getting raw-data inn 
+Using the precompiled view "view_occurrence_by_event" from the NOFA database, which basically coarses down individual occurrences to an event basis and links these to waterBodyID and environmental charactheristics. i.e. one row in this view for each species observed during one "sampling-event". Note that sampling event not need to be survey type of sampling, but also an observation. 
+
+```{r, eval = FALSE}
+# load data from database, stores it into subfolder "data" of the working directory. 
+get_inndata(serveradress="my-server.no",datafolder="./data")
+
+```
